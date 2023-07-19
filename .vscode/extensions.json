@@ -1,6 +1,8 @@
 {
     "recommendations": [
         "castwide.solargraph",
+        "ms-vscode.makefile-tools",
+        "pavlitsky.yard",
         "rebornix.ruby"
     ]
 }
