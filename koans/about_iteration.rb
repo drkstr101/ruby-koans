@@ -1,20 +1,19 @@
-require File.expand_path(File.dirname(__FILE__) + '/neo')
+require 'neo'
 
 class AboutIteration < Neo::Koan
-
   # -- An Aside ------------------------------------------------------
   # Ruby 1.8 stores names as strings. Ruby 1.9 and later stores names
   # as symbols. So we use a version dependent method "as_name" to
   # convert to the right format in the koans. We will use "as_name"
   # whenever comparing to lists of methods.
 
-  in_ruby_version("1.8") do
+  in_ruby_version('1.8') do
     def as_name(name)
       name.to_s
     end
   end
 
-  in_ruby_version("1.9", "2", "3") do
+  in_ruby_version('1.9', '2', '3') do
     def as_name(name)
       name.to_sym
     end
@@ -48,6 +47,7 @@ class AboutIteration < Neo::Koan
     sum = 0
     array.each do |item|
       break if item > 3
+
       sum += item
     end
     assert_equal __, sum
@@ -66,18 +66,18 @@ class AboutIteration < Neo::Koan
   def test_select_selects_certain_items_from_an_array
     array = [1, 2, 3, 4, 5, 6]
 
-    even_numbers = array.select { |item| (item % 2) == 0 }
+    even_numbers = array.select { |item| item.even? }
     assert_equal __, even_numbers
 
     # NOTE: 'find_all' is another name for the 'select' operation
-    more_even_numbers = array.find_all { |item| (item % 2) == 0 }
+    more_even_numbers = array.find_all { |item| item.even? }
     assert_equal __, more_even_numbers
   end
 
   def test_find_locates_the_first_element_matching_a_criteria
-    array = ["Jim", "Bill", "Clarence", "Doug", "Eli"]
+    array = %w[Jim Bill Clarence Doug Eli]
 
-    assert_equal __, array.find { |item| item.size > 4 }
+    assert_equal(__, array.find { |item| item.size > 4 })
   end
 
   def test_inject_will_blow_your_mind
@@ -97,7 +97,7 @@ class AboutIteration < Neo::Koan
     assert_equal __, result
 
     # Files act like a collection of lines
-    File.open("example_file.txt") do |file|
+    File.open('example_file.txt') do |file|
       upcase_lines = file.map { |line| line.strip.upcase }
       assert_equal __, upcase_lines
     end
@@ -118,5 +118,4 @@ class AboutIteration < Neo::Koan
   #   # code to read 'file'
   #
   # When you get to the "AboutSandwichCode" koan, recheck your answer.
-
 end

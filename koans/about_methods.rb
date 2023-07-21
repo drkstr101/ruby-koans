@@ -1,13 +1,12 @@
-require File.expand_path(File.dirname(__FILE__) + '/neo')
+require 'neo'
 
-def my_global_method(a,b)
+def my_global_method(a, b)
   a + b
 end
 
 class AboutMethods < Neo::Koan
-
   def test_calling_global_methods
-    assert_equal __, my_global_method(2,3)
+    assert_equal __, my_global_method(2, 3)
   end
 
   def test_calling_global_methods_without_parentheses
@@ -18,7 +17,7 @@ class AboutMethods < Neo::Koan
   # (NOTE: We are Using eval below because the example code is
   # considered to be syntactically invalid).
   def test_sometimes_missing_parentheses_are_ambiguous
-    eval "assert_equal 5, my_global_method 2, 3" # ENABLE CHECK
+    eval 'assert_equal 5, my_global_method 2, 3' # ENABLE CHECK
     #
     # Ruby doesn't know if you mean:
     #
@@ -39,14 +38,14 @@ class AboutMethods < Neo::Koan
     assert_match(/__/, exception.message)
 
     exception = assert_raise(___) do
-      my_global_method(1,2,3)
+      my_global_method(1, 2, 3)
     end
     assert_match(/__/, exception.message)
   end
 
   # ------------------------------------------------------------------
 
-  def method_with_defaults(a, b=:default_value)
+  def method_with_defaults(a, b = :default_value)
     [a, b]
   end
 
@@ -71,7 +70,6 @@ class AboutMethods < Neo::Koan
   # ------------------------------------------------------------------
 
   def method_with_explicit_return
-    :a_non_return_value
     return :return_value
     :another_non_return_value
   end
@@ -83,7 +81,6 @@ class AboutMethods < Neo::Koan
   # ------------------------------------------------------------------
 
   def method_without_explicit_return
-    :a_non_return_value
     :return_value
   end
 
@@ -98,17 +95,17 @@ class AboutMethods < Neo::Koan
   end
 
   def test_calling_methods_in_same_class
-    assert_equal __, my_method_in_the_same_class(3,4)
+    assert_equal __, my_method_in_the_same_class(3, 4)
   end
 
   def test_calling_methods_in_same_class_with_explicit_receiver
-    assert_equal __, self.my_method_in_the_same_class(3,4)
+    assert_equal __, my_method_in_the_same_class(3, 4)
   end
 
   # ------------------------------------------------------------------
 
   def my_private_method
-    "a secret"
+    'a secret'
   end
   private :my_private_method
 
@@ -116,12 +113,12 @@ class AboutMethods < Neo::Koan
     assert_equal __, my_private_method
   end
 
-  if before_ruby_version("2.7")   # https://github.com/edgecase/ruby_koans/issues/12
+  if before_ruby_version('2.7') # https://github.com/edgecase/ruby_koans/issues/12
     def test_calling_private_methods_with_an_explicit_receiver
       exception = assert_raise(___) do
-        self.my_private_method
+        my_private_method
       end
-      assert_match /__/, exception.message
+      assert_match(/__/, exception.message)
     end
   end
 
@@ -129,13 +126,13 @@ class AboutMethods < Neo::Koan
 
   class Dog
     def name
-      "Fido"
+      'Fido'
     end
 
     private
 
     def tail
-      "tail"
+      'tail'
     end
   end
 

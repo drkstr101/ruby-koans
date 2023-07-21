@@ -1,10 +1,9 @@
-require File.expand_path(File.dirname(__FILE__) + '/neo')
+require 'neo'
 
-C = "top level"
+C = 'top level'
 
 class AboutConstants < Neo::Koan
-
-  C = "nested"
+  C = 'nested'
 
   def test_nested_constants_may_also_be_referenced_with_relative_paths
     assert_equal __, C
