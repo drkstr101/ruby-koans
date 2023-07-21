@@ -9,6 +9,6 @@
   "solargraph.autoformat": true,
   "solargraph.formatting": true,
   "solargraph.diagnostics": true,
-  "solargraph.bundlerPath": "${workspaceFolder}/bin/bundle",
+  "solargraph.useBundler": true,
   "ruby.format": "rubocop"
 }
