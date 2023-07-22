@@ -14,3 +14,8 @@ require:
 
 AllCops:
   NewCops: enable
+
+
+Metrics/ClassLength:
+  Exclude:
+    - koans/about_*.rb
