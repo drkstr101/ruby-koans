@@ -87,7 +87,9 @@ It was the worst of times.
     original_string = 'Hello, '
     hi = original_string
     there = 'World'
+    # rubocop:disable Lint/UselessAssignment
     hi += there
+    # rubocop:enable Lint/UselessAssignment
     assert_equal 'Hello, ', original_string
   end
 
@@ -135,7 +137,10 @@ It was the worst of times.
   end
 
   def test_single_quoted_strings_do_not_interpolate
+    # rubocop:disable Lint/UselessAssignment
     value = 123
+    # rubocop:enable Lint/UselessAssignment
+
     # rubocop:disable Lint/InterpolationCheck
     string = 'The value is #{value}'
     assert_equal 'The value is #{value}', string
