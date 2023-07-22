@@ -69,9 +69,9 @@ It was the worst of times.
   def test_plus_concatenation_will_leave_the_original_strings_unmodified
     hi = 'Hello, '
     there = 'World'
-    # rubocop: disable Lint/UselessAssignment
+    # rubocop:disable Lint/UselessAssignment
     string = hi + there
-    # enable: disable Lint/UselessAssignment
+    # rubocop:enable Lint/UselessAssignment
     assert_equal 'Hello, ', hi
     assert_equal 'World', there
   end
